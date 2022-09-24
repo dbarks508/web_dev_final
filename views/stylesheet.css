@@ -3,7 +3,14 @@ body{
     margin: 20px auto;
     padding: 0 20px;
     font-family: serif;
+    background-color: rgb(231, 245, 233); color: black;
   }
   h1{
+    background-color: turquoise; color: black;
+    text-align: center;
     text-decoration: underline;
   }
+  nav { 
+    text-align: center;
+    font-weight: bold;
+}
