@@ -4,3 +4,6 @@ body{
     padding: 0 20px;
     font-family: serif;
   }
+  h1{
+    text-decoration: underline;
+  }
