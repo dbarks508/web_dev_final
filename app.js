@@ -1,12 +1,13 @@
 const http = require('http');
 const fs = require('fs');
 
+
 const server = http.createServer((req, res) => {
     
     // console.log('Request coming in!');
 
-
     res.setHeader('Content-Type', 'Text/html');
+    
 
     let path = './views/';
     switch (req.url){
