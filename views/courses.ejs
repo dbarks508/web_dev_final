@@ -23,7 +23,8 @@
     <% if (courses.length > 0) { %>
         <% courses.forEach(course => { %>
          <h3 class="subject"><%= course.subject %></h3>
-         <p class="credits"><%= course.credits %></p>
+         <b><p class="credits"><%= course.credits %> credit hours</p></b>
+         <p class="desc"><%= course.description %></p>
          <% }) %>
      <% } else { %>
          <p>There are no courses to display.</p>

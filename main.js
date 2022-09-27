@@ -27,9 +27,9 @@ app.get('/signup', (req, res) => {
 app.get('/courses', (req, res) => {
     // res.sendFile(path.join(__dirname + '/views/courses.html'));
     const courses = [
-        {subject: 'English Composition', credits: '4 Credit hours'},
-        {subject: 'Algebra', credits: '4 credit hours'},
-        {subject: 'Astronomy', credits: '3 credit hours'}
+        {subject: 'English Composition', credits: 4, description: 'Write stuff'},
+        {subject: 'Algebra', credits: 4, description: 'Numbers and such'},
+        {subject: 'Astronomy', credits: 3, description: 'Look at stars'}
     ];
 
     res.render('courses', { title: 'course list', courses} );
