@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>School Courses</title>
+</head>
+<body>
+    <h1>School Course Website</h1>
+    <nav id="nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="addcourse.html">Add Course</a></li>
+            <li><a href="signup.html">Sign up</a></li>
+            <li><a href="/courses">Index of Courses</a></li>
+        </ul>
+    </nav>
+
+    <h2>Index of courses</h2>
+
+    <% if (courses.length > 0) { %>
+        <% courses.forEach(course => { %>
+         <h3 class="subject"><%= course.subject %></h3>
+         <p class="credits"><%= course.credits %></p>
+         <% }) %>
+     <% } else { %>
+         <p>There are no courses to display.</p>
+     <% } %> 
+
+</body>
+</html>
