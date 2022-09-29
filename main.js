@@ -17,12 +17,12 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((result) => app.listen(3000))
     .catch((err) => console.log(err));
 
-// sandbox route test
+// sandbox routes to add and get courses
 app.get('/add-course', (req, res) => {
     const course = new Course({
-        subject: 'Yoga',
-        credits: 2,
-        description: 'strecthing and breathing'
+        subject: 'Spanish',
+        credits: 3,
+        description: 'learn a new language'
     });
 
     course.save()
@@ -30,6 +30,16 @@ app.get('/add-course', (req, res) => {
         res.send(result);
     });
 });
+
+app.get('/all-courses', (req, res) =>{
+    Course.find()
+    .then((result) => {
+        res.send(result);
+    });
+});
+
+
+// routes
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/views/index.html'));
@@ -45,12 +55,21 @@ app.get('/signup', (req, res) => {
 
 app.get('/courses', (req, res) => {
     // res.sendFile(path.join(__dirname + '/views/courses.html'));
-    const courses = [
-        {subject: 'English Composition', credits: 4, description: 'Write stuff'},
-        {subject: 'Algebra', credits: 4, description: 'Numbers and such'},
-        {subject: 'Astronomy', credits: 3, description: 'Look at stars'}
-    ];
+    // const courses = [
+    //     {subject: 'English Composition', credits: 4, description: 'Write stuff'},
+    //     {subject: 'Algebra', credits: 4, description: 'Numbers and such'},
+    //     {subject: 'Astronomy', credits: 3, description: 'Look at stars'}
+    // ];
 
-    res.render('courses', { title: 'course list', courses} );
+    // res.render('courses', { title: 'course list', courses} );
+
+    // dsiplaying all courses in db
+    Course.find()
+    .then((result) => {
+        res.render('courses', { courses: result })
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 });
 
