@@ -9,7 +9,7 @@ const Course = require('./models/course');
 app.use(express.static(__dirname + '/views'));
 
 // const dbURI = 'mongodb+srv://dylanbarks:Cooliest7!@cluster0.zyumiwp.mongodb.net/?retryWrites=true&w=majority';
-const dbURI = 'mongodb+srv://group:webdevfinal@cluster0.xgizzyz.mongodb.net/?retryWrites=true&w=majority'
+const dbURI = 'mongodb+srv://group:webdevfinal@cluster0.xgizzyz.mongodb.net/school-website?retryWrites=true&w=majority'
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((result) => app.listen(3000))
     .then(console.log('connected to db'));
