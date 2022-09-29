@@ -17,3 +17,7 @@ body{
 ul{
   list-style: none;
 }
+form label{
+  padding: 5px;
+  display: block;
+}

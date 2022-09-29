@@ -20,8 +20,15 @@
     <h2>Add Course Page</h2>
 
     <div>
-        <input type="text" placeholder="Course Name">
-        <button>Add Me</button>
+        <form action="/courses" method="POST">
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+            <label for="credits">Credit hours:</label>
+            <input type="text" id="credits" name="credits" required>
+            <label for="description">Course descripton:</label>
+            <textarea name="description" id="description" cols="30" rows="10" required></textarea><br>
+            <button>Add Me</button>
+        </form>
     </div>
 
 

@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const Course = require('./models/course');
 
 app.use(express.static(__dirname + '/views'));
+app.use(express.urlencoded({ extended: true }));
 
 // const dbURI = 'mongodb+srv://dylanbarks:Cooliest7!@cluster0.zyumiwp.mongodb.net/?retryWrites=true&w=majority';
 const dbURI = 'mongodb+srv://group:webdevfinal@cluster0.xgizzyz.mongodb.net/school-website?retryWrites=true&w=majority'
@@ -73,3 +74,6 @@ app.get('/courses', (req, res) => {
     });
 });
 
+app.post('/courses', (req, res) => {
+    console.log(req.body);
+});
