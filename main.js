@@ -75,5 +75,34 @@ app.get('/courses', (req, res) => {
 });
 
 app.post('/courses', (req, res) => {
-    console.log(req.body);
+    const course = new Course(req.body);
+
+    course.save()
+      .then(result => {
+        res.redirect('/courses');
+      })
+        .catch(err => {
+            console.log(err); 
+        });     
 });
+app.get('/courses/:id', (req, res) => {
+    const id = req.params.id;
+    Course.findById(id)
+      .then(result => {
+        res.render('details', { blog: result, title: 'Course Details' });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
+  app.delete('/courses/:id', (req, res) => {
+    const id = req.params.id;
+    
+    Course.findByIdAndDelete(id)
+      .then(result => {
+        res.json({ redirect: '/courses' });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
