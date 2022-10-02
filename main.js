@@ -43,26 +43,21 @@ app.get('/all-courses', (req, res) =>{
 // routes
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname + '/views/index.html'));
+    // res.sendFile(path.join(__dirname + '/views/index.ejs'));
+    res.render('index');
 });
 
 app.get('/addcourse', (req, res) => {
-    res.sendFile(path.join(__dirname + '/views/addcourse.html'));
+    // res.sendFile(path.join(__dirname + '/views/addcourse.ejs'));
+    res.render('addcourse');
 });
 
 app.get('/signup', (req, res) => {
-    res.sendFile(path.join(__dirname + '/views/signup.html'));
+    // res.sendFile(path.join(__dirname + '/views/signup.ejs'));
+    res.render('signup');
 });
 
 app.get('/courses', (req, res) => {
-    // res.sendFile(path.join(__dirname + '/views/courses.html'));
-    // const courses = [
-    //     {subject: 'English Composition', credits: 4, description: 'Write stuff'},
-    //     {subject: 'Algebra', credits: 4, description: 'Numbers and such'},
-    //     {subject: 'Astronomy', credits: 3, description: 'Look at stars'}
-    // ];
-
-    // res.render('courses', { title: 'course list', courses} );
 
     // dsiplaying all courses in db
     Course.find()
