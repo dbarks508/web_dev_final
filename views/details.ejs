@@ -12,8 +12,6 @@
       <a class="delete" data-doc="<%= blog._id %>">delete</a>
     </div>
   
-    <%- include("./partials/footer.ejs") %>
-  
     <script>
       const trashcan = document.querySelector('a.delete');
       trashcan.addEventListener('click', (e) => {

@@ -84,7 +84,7 @@ app.get('/courses/:id', (req, res) => {
     const id = req.params.id;
     Course.findById(id)
       .then(result => {
-        res.render('details', { blog: result, title: 'Course Details' });
+        res.render('details', { course: result, title: 'Course Details' });
       })
       .catch(err => {
         console.log(err);
