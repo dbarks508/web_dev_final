@@ -12,9 +12,11 @@
 
     <% if (courses.length > 0) { %>
         <% courses.forEach(course => { %>
+        <a href="/courses/<%= course._id %>">
          <h3 class="subject"><%= course.subject %></h3>
          <b><p class="credits"><%= course.credits %> credit hours</p></b>
          <p class="desc"><%= course.description %></p>
+        </a>
          <% }) %>
      <% } else { %>
          <p>There are no courses to display.</p>

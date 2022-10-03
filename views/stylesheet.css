@@ -21,3 +21,6 @@ form label{
   padding: 5px;
   display: block;
 }
+.delete{
+  color: red;
+}

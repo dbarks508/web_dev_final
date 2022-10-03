@@ -5,11 +5,11 @@
     <%- include("./partials/nav.ejs") %>
 
     <div class="details content">
-      <h2><%= blog.title %></h2>
+      <h2><%= course.subject %></h2>
       <div class="content">
-        <p><%= course.body %></p>
+        <p><%= course.description %></p>
       </div>
-      <a class="delete" data-doc="<%= blog._id %>">delete</a>
+      <a class="delete" data-doc="<%= course._id %>">Delete</a>
     </div>
   
     <script>
