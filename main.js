@@ -7,9 +7,11 @@ app.set('view engine', 'ejs');
 const { render } = require('ejs');
 const mongoose = require('mongoose');
 const Course = require('./models/course');
+const User = require('./models/User');
 
 app.use(express.static(__dirname + '/views'));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 const dbURI = 'mongodb+srv://group:webdevfinal@cluster0.xgizzyz.mongodb.net/school-website?retryWrites=true&w=majority'
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -107,4 +109,22 @@ app.get('/signup', (req, res) => {
 
 app.get('/login', (req, res) => {
   res.render('login');
+});
+
+app.post('/signup', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.create ({ email, password });
+    res.status(201).json(user);
+  }
+  catch (err) {
+    console.log(err.message, err.code);
+  }
+});
+
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  console.log(email, password);
+  res.send('user login');
 });
