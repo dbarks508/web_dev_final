@@ -8,10 +8,13 @@ const { render } = require('ejs');
 const mongoose = require('mongoose');
 const Course = require('./models/course');
 const User = require('./models/User');
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 
 app.use(express.static(__dirname + '/views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 const dbURI = 'mongodb+srv://group:webdevfinal@cluster0.xgizzyz.mongodb.net/school-website?retryWrites=true&w=majority'
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -101,6 +104,12 @@ app.get('/courses/:id', (req, res) => {
         console.log(err);
       });
   });
+
+//token function
+const createToken = (id) => {
+
+}
+
 
 // auth routes 
 app.get('/signup', (req, res) => {
