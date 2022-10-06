@@ -51,9 +51,6 @@ app.get('/addcourse', (req, res) => {
     res.render('addcourse');
 });
 
-app.get('/signup', (req, res) => {
-    res.render('signup');
-});
 
 app.get('/courses', (req, res) => {
   
@@ -102,3 +99,12 @@ app.get('/courses/:id', (req, res) => {
         console.log(err);
       });
   });
+
+// auth routes 
+app.get('/signup', (req, res) => {
+  res.render('signup');
+});
+
+app.get('/login', (req, res) => {
+  res.render('login');
+});
