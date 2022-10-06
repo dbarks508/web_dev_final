@@ -106,10 +106,14 @@ app.get('/courses/:id', (req, res) => {
   });
 
 //token function
+
+const maxAge = 3 * 24 * 60 *60;
+
 const createToken = (id) => {
-
-}
-
+  return jwt.sign({ id }, 'super secret', {
+    expiresIn: maxAge
+  });
+};
 
 // auth routes 
 app.get('/signup', (req, res) => {
@@ -125,7 +129,9 @@ app.post('/signup', async (req, res) => {
 
   try {
     const user = await User.create ({ email, password });
-    res.status(201).json(user);
+    const token = createToken(user._id);
+    res.cookie('jwt', token, { maxAge: maxAge * 1000 });
+    res.status(201).json({ user: user._id});
   }
   catch (err) {
     console.log(err.message, err.code);
