@@ -24,3 +24,20 @@ form label{
 .delete{
   color: red;
 }
+li {
+  display: inline;
+  padding: 15px;
+}
+a {
+  text-decoration: none;
+}
+a:link {
+  color: black;
+  text-decoration: underline;
+}
+a:visited {
+  color: black;
+}
+a:hover {
+  background-color: brown;
+}

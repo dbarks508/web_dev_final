@@ -10,20 +10,21 @@ const Course = require('./models/course');
 const User = require('./models/User');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
+const { requireAuth } = require('./middleware/authMiddleware');
 
 app.use(express.static(__dirname + '/views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
+// db connnection 
 const dbURI = 'mongodb+srv://group:webdevfinal@cluster0.xgizzyz.mongodb.net/school-website?retryWrites=true&w=majority'
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(result => console.log('connected to db'))
     .then((result) => app.listen(3000))
     .catch((err) => console.log(err));
 
-// sandbox route to add course
-
+// sandbox routes
 app.get('/add-course', (req, res) => {
     const course = new Course({
         subject: 'Spanish',
@@ -37,8 +38,6 @@ app.get('/add-course', (req, res) => {
     });
 });
 
-// sandbox route to get all courses
-
 app.get('/all-courses', (req, res) =>{
     Course.find()
     .then((result) => {
@@ -46,21 +45,19 @@ app.get('/all-courses', (req, res) =>{
     });
 });
 
-// routes
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// routes
 app.get('/', (req, res) => {
     res.render('index');
 });
 
-app.get('/addcourse', (req, res) => {
+app.get('/addcourse', requireAuth, (req, res) => {
     res.render('addcourse');
 });
 
-
-app.get('/courses', (req, res) => {
-  
-  // display all courses
-  
+// display all courses
+app.get('/courses', requireAuth, (req, res) => {
   Course.find()
     .then((result) => {
         res.render('courses', { courses: result })
@@ -105,8 +102,9 @@ app.get('/courses/:id', (req, res) => {
       });
   });
 
-//token function
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//token function
 const maxAge = 3 * 24 * 60 *60;
 
 const createToken = (id) => {
@@ -130,7 +128,7 @@ app.post('/signup', async (req, res) => {
   try {
     const user = await User.create ({ email, password });
     const token = createToken(user._id);
-    res.cookie('jwt', token, { maxAge: maxAge * 1000 });
+    res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000 });
     res.status(201).json({ user: user._id});
   }
   catch (err) {
@@ -138,8 +136,16 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
-  res.send('user login');
+  
+  try {
+    const user = await User.login(email, password);
+    const token = createToken(user._id);
+    res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000 });
+    res.status(200).json({ user: user._id });
+  }
+  catch (err) {
+    res.status(400).json({});
+  }
 });
