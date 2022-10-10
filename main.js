@@ -56,6 +56,10 @@ app.get('/addcourse', requireAuth, (req, res) => {
     res.render('addcourse');
 });
 
+app.get('/cart', requireAuth, (req, res) => {
+  res.render('cart');
+})
+
 // display all courses
 app.get('/courses', requireAuth, (req, res) => {
   Course.find()
@@ -102,6 +106,17 @@ app.get('/courses/:id', (req, res) => {
       });
   });
 
+  app.get('/shoppingcart', (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+    Course.findById(id)
+      .then(result => {
+        res.render('cart', { course: result });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //token function

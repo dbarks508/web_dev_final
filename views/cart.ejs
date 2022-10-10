@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('./partials/head.ejs') %>
+
+<body>
+    <h1>School Course Website</h1>
+
+    <%- include('./partials/nav.ejs') %>
+
+    <h2>Shopping cart</h2>
+    <div class="courseCart" id="cart">
+        <p>class 1</p>
+        <% courses.forEach(course => { %>
+        <p><%= course.subject %></p>
+        <% }) %>
+    </div>
+</body>
+</html>
