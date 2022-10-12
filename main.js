@@ -106,17 +106,6 @@ app.get('/courses/:id', (req, res) => {
       });
   });
 
-  app.get('/shoppingcart', (req, res) => {
-    const id = req.params.id;
-    console.log(id);
-    Course.findById(id)
-      .then(result => {
-        res.render('cart', { course: result });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //token function
