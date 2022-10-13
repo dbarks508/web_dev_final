@@ -19,6 +19,14 @@
              <p>There are no items in your cart.</p>
          <% } %> 
 
+         <button id="buy">Buy</button>
     </div>
+    <script>
+        const buyBtn = document.getElementById('buy');
+        buyBtn.addEventListener( 'click', (e) => {
+            window.alert('Items purchased!');
+        });
+
+    </script>
 </body>
 </html>
