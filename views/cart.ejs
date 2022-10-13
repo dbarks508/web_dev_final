@@ -11,6 +11,14 @@
     <h2>Shopping cart</h2>
     <div class="courseCart" id="cart">
 
+        <% if (carts.length > 0) { %>
+            <% carts.forEach(cart => { %>
+             <p><%= cart.subject %> ------ <b>$<%= cart.price %></b></p>
+             <% }) %>
+         <% } else { %>
+             <p>There are no items in your cart.</p>
+         <% } %> 
+
     </div>
 </body>
 </html>

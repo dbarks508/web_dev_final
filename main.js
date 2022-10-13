@@ -58,8 +58,15 @@ app.get('/addcourse', requireAuth, (req, res) => {
 });
 
 app.get('/cart', requireAuth, (req, res) => {
-  res.render('cart');
-})
+  Cart.find()
+  .then((result) => {
+    res.render('cart', { carts: result});
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+  
+});
 
 // display all courses
 app.get('/courses', requireAuth, (req, res) => {

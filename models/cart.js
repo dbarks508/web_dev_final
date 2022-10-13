@@ -5,6 +5,10 @@ const cartSchema = new Schema({
     subject: {
         type: String,
         required: true
+    },
+    price: {
+        type: Number,
+        required: true
     }
 });
 
