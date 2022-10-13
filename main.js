@@ -8,6 +8,7 @@ const { render } = require('ejs');
 const mongoose = require('mongoose');
 const Course = require('./models/course');
 const User = require('./models/User');
+const Cart = require('./models/cart')
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const { requireAuth } = require('./middleware/authMiddleware');
@@ -106,6 +107,17 @@ app.get('/courses/:id', (req, res) => {
       });
   });
 
+  app.post('/cart', (req, res) => {
+    const cart = new Cart(req.body);
+
+    cart.save()
+      .then(result => {
+        res.redirect('cart')
+      })
+        .catch(err => {
+            console.log(err); 
+        });  
+  });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //token function

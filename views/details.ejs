@@ -3,7 +3,7 @@
     <%- include('./partials/head.ejs') %>
 <body>
     <%- include("./partials/nav.ejs") %>
-    
+
     <div class="details content">
       <h2><%= course.subject %></h2>
       <div class="content">
@@ -11,7 +11,12 @@
       </div>
       <a class="delete" data-doc="<%= course._id %>">Delete</a>
     </div>
-    <a>ADD TO CART</a>
+
+    <form action="/cart" method="post">
+      <input hidden type="text" name="subject" value="<%= course.subject %>">
+    <button>ADD TO CART</button>
+    </form>
+
     <script>
       const trashcan = document.querySelector('a.delete');
       trashcan.addEventListener('click', (e) => {
