@@ -15,36 +15,36 @@ const cartSchema = new Schema({
 const Cart = mongoose.model('Cart', cartSchema);
 module.exports = Cart;
 
-module.exports = function Cart(Subject) {
-    this.subjects = Subject.items || {};
-    this.totalQty = Subject.totalQty || 0;
-    this.totalPrice = oldCart.totalPrice || 0;
+// module.exports = function Cart(Subject) {
+//     this.subjects = Subject.items || {};
+//     this.totalQty = Subject.totalQty || 0;
+//     this.totalPrice = oldCart.totalPrice || 0;
 
-this.add = function (subject, id) {
-    let storedItem = this.subjects[id];
-    if (!storedItem) {
-        storedItem = this.subjects[id] = {subject: subject, qty: 0, price: 0};
-    }
-    storedItem.qty++;
-    storedItem.price = storedItem.item.price * storedItem.qty;
-    this.totalQty++;
-    this.totalPrice += storedItem.item.price;
-};
+// this.add = function (subject, id) {
+//     let storedItem = this.subjects[id];
+//     if (!storedItem) {
+//         storedItem = this.subjects[id] = {subject: subject, qty: 0, price: 0};
+//     }
+//     storedItem.qty++;
+//     storedItem.price = storedItem.item.price * storedItem.qty;
+//     this.totalQty++;
+//     this.totalPrice += storedItem.item.price;
+// };
 
-this.reduceByOne = function (id) {
-    this.items[id].qty--;
-    this.items[id].price -= this.subjects[id].subject.price;
-    this.totalQty--;
-    this.totalPrice -= this.subjects[id].subject.price;
+// this.reduceByOne = function (id) {
+//     this.items[id].qty--;
+//     this.items[id].price -= this.subjects[id].subject.price;
+//     this.totalQty--;
+//     this.totalPrice -= this.subjects[id].subject.price;
 
-    if(this.items[id].qty <= 0) {
-        delete this.items[id];
-    }
-};
+//     if(this.items[id].qty <= 0) {
+//         delete this.items[id];
+//     }
+// };
 
-this.removeItem = function (id) {
-    this.totalQty -= this.subjects[id].qty;
-    this.totalPrice -= this.subjects[id].price;
-    delete this.items[id];
-};
-}
+// this.removeItem = function (id) {
+//     this.totalQty -= this.subjects[id].qty;
+//     this.totalPrice -= this.subjects[id].price;
+//     delete this.items[id];
+// };
+// }
